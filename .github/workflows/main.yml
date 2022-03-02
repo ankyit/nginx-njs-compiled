@@ -43,7 +43,6 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
         with:
-          channel-id: 'C0358KL6V9Q'
           payload: |
             {
               "text": "Docker image build result: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }} ",
