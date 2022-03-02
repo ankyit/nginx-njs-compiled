@@ -38,3 +38,25 @@ jobs:
           context: . 
           push: true
           tags: ankyitm/nginx-njs-compiled:latest,ankyitm/nginx-njs-compiled:${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}
+      
+      - name: Notify Slack
+        id: slack
+        uses: slackapi/slack-github-action@v1.18.0
+        with:
+          payload: |
+            {
+              "text": "Docker image build result: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }} ",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "New Image Deployed With Tag: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}"
+                  }
+                }
+              ]
+            }
+          
+          env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
