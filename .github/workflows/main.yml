@@ -21,7 +21,7 @@ jobs:
       - name: Get Latest Version of Nginx 
         run: echo "NGINX_VERSION=$(curl -s 'http://nginx.org/en/download.html' | sed 's/</\'$'\n''</g' | sed -n '/>Mainline version$/,$ p' | egrep -m1 -o "([0-9]{1,}\.)+[0-9]{1,}" | sort -u)"  >> $GITHUB_ENV
       - name: Get Latest Version of NJS 
-        run: echo "NJS_VERSION=$(curl -s curl 'https://hg.nginx.org/njs/atom-log' | grep  '<link href="http://hg.nginx.org/njs/rev/' | head -n1 | sed 's/[^0-9]//g')  >> $GITHUB_ENV     
+        run: echo "NJS_VERSION=$(curl -s curl 'https://hg.nginx.org/njs/atom-log' | grep  'http://hg.nginx.org/njs/rev/' | head -n1 | sed 's/[^0-9]//g')  >> $GITHUB_ENV     
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
