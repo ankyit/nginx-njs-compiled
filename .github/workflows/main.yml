@@ -43,7 +43,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
         with:
-          channel-id: 'C0358KL6V9Q'
+          channel-id: ${{ secrets.SLACK_CHANNEL }}
           payload: |
             {
               "text": "Docker image build result: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }} ",
@@ -52,7 +52,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "New Image Built and Push With Tag: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}\n Download Image With: docker pull ankyitm/nginx-njs-compiled:latest or ankyitm/nginx-njs-compiled:${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}"
+                    "text": "New Image Built and Push With Tag: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}\n Download Image With:\n docker pull ankyitm/nginx-njs-compiled:latest \n or \n ankyitm/nginx-njs-compiled:${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }} \n Jenkins Deployment will trigger soon"
                   }
                 }
               ]
@@ -60,3 +60,11 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      
+      - name: Trigger Jenkins Deployment 
+        uses: appleboy/jenkins-action@master
+        with:
+          url: ${{ secrets.JENKINS_URL }}
+          user: ${{ secrets.JENKINS_USER }}
+          token: ${{ secrets.TOKEN }}
+          job: ${{ secrets.JENKINS_JOB }}
