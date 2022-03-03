@@ -60,11 +60,8 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-      
-      - name: Trigger Jenkins Deployment 
-        uses: appleboy/jenkins-action@master
+        
+      - name: Trigger Jenkins 
+        uses: wei/curl@v1
         with:
-          url: ${{ secrets.JENKINS_URL }}
-          user: ${{ secrets.JENKINS_USER }}
-          token: ${{ secrets.JENKINS_TOKEN }}
-          job: ${{ secrets.JENKINS_JOB }}
+          args: ${{ secrets.TRIGGER_URL }}
