@@ -66,5 +66,5 @@ jobs:
         with:
           url: ${{ secrets.JENKINS_URL }}
           user: ${{ secrets.JENKINS_USER }}
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.JENKINS_TOKEN }}
           job: ${{ secrets.JENKINS_JOB }}
