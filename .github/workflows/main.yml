@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'main'
-    schedule:
+  schedule:
       - cron: '0 0 * * *'
 
 jobs:
@@ -60,8 +60,3 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-        
-      - name: Trigger Jenkins 
-        uses: wei/curl@v1
-        with:
-          args: ${{ secrets.TRIGGER_URL }}
