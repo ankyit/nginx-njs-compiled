@@ -52,7 +52,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "New Image Built and Push With Tag: ${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}\n Download Image With:\n docker pull ankyitm/nginx-njs-compiled:latest \n or \n ankyitm/nginx-njs-compiled:${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }} \n Jenkins Deployment will trigger soon"
+                    "text": "**New Image Built and Push With Tag:** \n${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}\n **Download Image With:** \n`docker pull ankyitm/nginx-njs-compiled:latest` \n or \n `ankyitm/nginx-njs-compiled:${{ env.NGINX_VERSION }}-${{ env.NJS_VERSION }}` \n"
                   }
                 }
               ]
