@@ -7,7 +7,7 @@ LABEL description="Docker image to test latest version of the njs with nginx"
 LABEL org.opencontainers.image.source = "https://github.com/ankyit/nginx-njs-compiled"
 
 #Nginx Version as Argument
-ARG NGINX_VER=1.21.6
+ARG NGINX_VER=1.22.0
 
 #Create Nginx User 
 RUN addgroup --system --gid 101 nginx
