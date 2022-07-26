@@ -46,6 +46,9 @@ RUN chmod +x /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
 RUN chmod +x /docker-entrypoint.d/20-envsubst-on-templates.sh
 RUN chmod +x /docker-entrypoint.d/30-tune-worker-processes.sh
 
+COPY njs/get_versions.js /etc/nginx/njs/get_versions.js
+COPY nginx/default.conf /etc/nginx/nginx.conf
+
 #Set entrypoint 
 ENTRYPOINT ["bash","/docker-entrypoint.sh"]
 
